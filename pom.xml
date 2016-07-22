@@ -69,9 +69,10 @@
 	</mailingLists>
 
 	<properties>
-		<java-version>1.6</java-version>
-		<java-compile>1.6</java-compile>
+		<java-version>1.7</java-version>
 		<org.slf4j-version>1.7.12</org.slf4j-version>
+		<org.springframework.version>4.1.9.RELEASE</org.springframework.version>
+		<nimbus-jose-jwt.version>4.22</nimbus-jose-jwt.version>
 	</properties>
 	<description>A reference implementation of OpenID Connect (http://openid.net/connect/), OAuth 2.0, and UMA built on top of Java, Spring, and Spring Security. The project contains a fully functioning server, client, and utility library.</description>
 	<url>https://github.com/mitreid-connect</url>
@@ -260,7 +261,7 @@
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-framework-bom</artifactId>
-				<version>4.1.9.RELEASE</version>
+				<version>${org.springframework.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -413,7 +414,7 @@
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-test</artifactId>
-				<version>4.1.9.RELEASE</version>
+				<version>${org.springframework.version}</version>
 				<scope>test</scope>
 				<exclusions>
 					<exclusion>
@@ -486,15 +487,9 @@
 				</exclusions>
 			</dependency>
 			<dependency>
-				<groupId>com.nimbusds</groupId>
-				<artifactId>nimbus-jose-jwt</artifactId>
-				<classifier>jdk16</classifier>
-				<version>4.22</version>
-			</dependency>
-			<dependency>
-			    <groupId>org.bouncycastle</groupId>
-			    <artifactId>bcprov-jdk15on</artifactId>
-			    <version>[1.52,]</version>
+				<groupId>org.bouncycastle</groupId>
+				<artifactId>bcprov-jdk15on</artifactId>
+				<version>[1.52,]</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -542,6 +537,58 @@
 	</dependencies>
 
 	<profiles>
+		<profile>
+			<id>java6</id>
+			<properties>
+				<java-version>1.6</java-version>
+			</properties>
+			<dependencyManagement>
+				<dependencies>
+					<dependency>
+						<groupId>com.nimbusds</groupId>
+						<artifactId>nimbus-jose-jwt</artifactId>
+						<classifier>jdk16</classifier>
+						<version>${nimbus-jose-jwt.version}</version>
+					</dependency>
+				</dependencies>
+			</dependencyManagement>
+			<build>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<artifactId>maven-jar-plugin</artifactId>
+							<executions>
+								<execution>
+									<phase>package</phase>
+									<goals>
+										<goal>jar</goal>
+									</goals>
+									<configuration>
+										<classifier>jdk6</classifier>
+									</configuration>
+								</execution>
+							</executions>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+			</build>
+		</profile>
+		<profile>
+			<id>standard</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<dependencyManagement>
+				<dependencies>
+					<dependency>
+						<groupId>com.nimbusds</groupId>
+						<artifactId>nimbus-jose-jwt</artifactId>
+						<classifier>jdk16</classifier>
+						<version>${nimbus-jose-jwt.version}</version>
+					</dependency>
+				</dependencies>
+			</dependencyManagement>
+		</profile>
 		<profile>
 			<!-- Turn off strict javadoc when building on 1.8 -->
 			<activation>
