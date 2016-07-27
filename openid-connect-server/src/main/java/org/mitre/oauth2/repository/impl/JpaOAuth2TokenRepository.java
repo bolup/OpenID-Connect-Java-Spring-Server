@@ -58,13 +58,13 @@ public class JpaOAuth2TokenRepository implements OAuth2TokenRepository {
 	@Override
 	public Set<OAuth2AccessTokenEntity> getAllAccessTokens() {
 		TypedQuery<OAuth2AccessTokenEntity> query = manager.createNamedQuery(OAuth2AccessTokenEntity.QUERY_ALL, OAuth2AccessTokenEntity.class);
-		return new LinkedHashSet<>(query.getResultList());
+		return new LinkedHashSet<OAuth2AccessTokenEntity>(query.getResultList());
 	}
 
 	@Override
 	public Set<OAuth2RefreshTokenEntity> getAllRefreshTokens() {
 		TypedQuery<OAuth2RefreshTokenEntity> query = manager.createNamedQuery(OAuth2RefreshTokenEntity.QUERY_ALL, OAuth2RefreshTokenEntity.class);
-		return new LinkedHashSet<>(query.getResultList());
+		return new LinkedHashSet<OAuth2RefreshTokenEntity>(query.getResultList());
 	}
 
 
@@ -96,7 +96,13 @@ public class JpaOAuth2TokenRepository implements OAuth2TokenRepository {
 	public void removeAccessToken(OAuth2AccessTokenEntity accessToken) {
 		OAuth2AccessTokenEntity found = getAccessTokenByValue(accessToken.getValue());
 		if (found != null) {
-			manager.remove(found);
+			OAuth2AccessTokenEntity accessTokenForIdToken = getAccessTokenForIdToken(found);
+			if (accessTokenForIdToken != null) {
+				accessTokenForIdToken.setIdToken(null);
+				JpaUtil.saveOrUpdate(accessTokenForIdToken.getId(), manager, accessTokenForIdToken);
+			} else {
+				manager.remove(found);
+			}
 		} else {
 			throw new IllegalArgumentException("Access token not found: " + accessToken);
 		}
@@ -202,7 +208,7 @@ public class JpaOAuth2TokenRepository implements OAuth2TokenRepository {
 		TypedQuery<OAuth2AccessTokenEntity> query = manager.createNamedQuery(OAuth2AccessTokenEntity.QUERY_EXPIRED_BY_DATE, OAuth2AccessTokenEntity.class);
 		query.setParameter(OAuth2AccessTokenEntity.PARAM_DATE, new Date());
 		query.setMaxResults(MAXEXPIREDRESULTS);
-		return new LinkedHashSet<>(query.getResultList());
+		return new LinkedHashSet<OAuth2AccessTokenEntity>(query.getResultList());
 	}
 
 	@Override
@@ -210,7 +216,7 @@ public class JpaOAuth2TokenRepository implements OAuth2TokenRepository {
 		TypedQuery<OAuth2RefreshTokenEntity> query = manager.createNamedQuery(OAuth2RefreshTokenEntity.QUERY_EXPIRED_BY_DATE, OAuth2RefreshTokenEntity.class);
 		query.setParameter(OAuth2RefreshTokenEntity.PARAM_DATE, new Date());
 		query.setMaxResults(MAXEXPIREDRESULTS);
-		return new LinkedHashSet<>(query.getResultList());
+		return new LinkedHashSet<OAuth2RefreshTokenEntity>(query.getResultList());
 	}
 
 	/* (non-Javadoc)
@@ -220,7 +226,7 @@ public class JpaOAuth2TokenRepository implements OAuth2TokenRepository {
 	public Set<OAuth2AccessTokenEntity> getAccessTokensForResourceSet(ResourceSet rs) {
 		TypedQuery<OAuth2AccessTokenEntity> query = manager.createNamedQuery(OAuth2AccessTokenEntity.QUERY_BY_RESOURCE_SET, OAuth2AccessTokenEntity.class);
 		query.setParameter(OAuth2AccessTokenEntity.PARAM_RESOURCE_SET_ID, rs.getId());
-		return new LinkedHashSet<>(query.getResultList());
+		return new LinkedHashSet<OAuth2AccessTokenEntity>(query.getResultList());
 	}
 
 	/* (non-Javadoc)
@@ -230,10 +236,10 @@ public class JpaOAuth2TokenRepository implements OAuth2TokenRepository {
 	@Transactional(value="defaultTransactionManager")
 	public void clearDuplicateAccessTokens() {
 
-		Query query = manager.createQuery("select a.jwt, count(1) as c from OAuth2AccessTokenEntity a GROUP BY a.jwt HAVING c > 1");
+		Query query = manager.createQuery("select a.jwt, count(1) as c from OAuth2AccessTokenEntity a GROUP BY a.jwt HAVING count(1) > 1");
 		@SuppressWarnings("unchecked")
 		List<Object[]> resultList = query.getResultList();
-		List<JWT> values = new ArrayList<>();
+		List<JWT> values = new ArrayList<JWT>();
 		for (Object[] r : resultList) {
 			logger.warn("Found duplicate access tokens: {}, {}", ((JWT)r[0]).serialize(), r[1]);
 			values.add((JWT) r[0]);
@@ -254,10 +260,10 @@ public class JpaOAuth2TokenRepository implements OAuth2TokenRepository {
 	@Override
 	@Transactional(value="defaultTransactionManager")
 	public void clearDuplicateRefreshTokens() {
-		Query query = manager.createQuery("select a.jwt, count(1) as c from OAuth2RefreshTokenEntity a GROUP BY a.jwt HAVING c > 1");
+		Query query = manager.createQuery("select a.jwt, count(1) as c from OAuth2RefreshTokenEntity a GROUP BY a.jwt HAVING count(1) > 1");
 		@SuppressWarnings("unchecked")
 		List<Object[]> resultList = query.getResultList();
-		List<JWT> values = new ArrayList<>();
+		List<JWT> values = new ArrayList<JWT>();
 		for (Object[] r : resultList) {
 			logger.warn("Found duplicate refresh tokens: {}, {}", ((JWT)r[0]).serialize(), r[1]);
 			values.add((JWT) r[0]);

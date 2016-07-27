@@ -191,7 +191,9 @@ public class DefaultOAuth2ClientDetailsEntityService implements ClientDetailsEnt
 					}
 				}
 
-			} catch (UncheckedExecutionException | ExecutionException e) {
+			} catch (ExecutionException e) {
+				throw new IllegalArgumentException("Unable to load sector identifier URI " + client.getSectorIdentifierUri() + ": " + e.getMessage());
+			} catch (UncheckedExecutionException e) {
 				throw new IllegalArgumentException("Unable to load sector identifier URI " + client.getSectorIdentifierUri() + ": " + e.getMessage());
 			}
 		}
@@ -485,7 +487,7 @@ public class DefaultOAuth2ClientDetailsEntityService implements ClientDetailsEnt
 			JsonElement json = parser.parse(jsonString);
 
 			if (json.isJsonArray()) {
-				List<String> redirectUris = new ArrayList<>();
+				List<String> redirectUris = new ArrayList<String>();
 				for (JsonElement el : json.getAsJsonArray()) {
 					redirectUris.add(el.getAsString());
 				}

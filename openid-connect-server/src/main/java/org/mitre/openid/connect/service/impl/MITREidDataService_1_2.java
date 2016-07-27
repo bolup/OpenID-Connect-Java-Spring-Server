@@ -848,8 +848,8 @@ public class MITREidDataService_1_2 extends MITREidDataServiceSupport implements
 		return savedUserAuth;
 	}
 
-	Map<Long, Long> grantOldToNewIdMap = new HashMap<>();
-	Map<Long, Set<Long>> grantToAccessTokensRefs = new HashMap<>();
+	Map<Long, Long> grantOldToNewIdMap = new HashMap<Long, Long>();
+	Map<Long, Set<Long>> grantToAccessTokensRefs = new HashMap<Long, Set<Long>>();
 
 	/**
 	 * @param reader

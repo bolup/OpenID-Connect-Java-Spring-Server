@@ -20,7 +20,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<artifactId>openid-connect-parent</artifactId>
-		<groupId>org.mitre</groupId>
+		<groupId>cm.org.mitre</groupId>
 		<version>1.2.7-SNAPSHOT</version>
 		<relativePath>..</relativePath>
 	</parent>
@@ -62,7 +62,7 @@
 			</properties>
 			<dependencies>
 				<dependency>
-					<groupId>org.mitre</groupId>
+					<groupId>cm.org.mitre</groupId>
 					<artifactId>openid-connect-common</artifactId>
 					<classifier>jdk6</classifier>
 					<version>${project.version}</version>
@@ -109,7 +109,7 @@
 			</activation>
 			<dependencies>
 				<dependency>
-					<groupId>org.mitre</groupId>
+					<groupId>cm.org.mitre</groupId>
 					<artifactId>openid-connect-common</artifactId>
 				</dependency>
 				<dependency>

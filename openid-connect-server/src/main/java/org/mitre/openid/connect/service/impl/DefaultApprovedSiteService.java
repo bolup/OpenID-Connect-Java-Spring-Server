@@ -161,12 +161,9 @@ public class DefaultApprovedSiteService implements ApprovedSiteService {
 		if (expiredSites.size() > 0) {
 			logger.info("Found " + expiredSites.size() + " expired approved sites.");
 		}
-		if (expiredSites != null) {
-			for (ApprovedSite expired : expiredSites) {
-				remove(expired);
-			}
+		for (ApprovedSite expired : expiredSites) {
+			remove(expired);
 		}
-
 	}
 
 	private Predicate<ApprovedSite> isExpired = new Predicate<ApprovedSite>() {

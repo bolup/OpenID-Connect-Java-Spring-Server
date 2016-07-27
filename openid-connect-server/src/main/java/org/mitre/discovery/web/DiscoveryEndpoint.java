@@ -302,7 +302,7 @@ public class DiscoveryEndpoint {
 				Algorithm.NONE);
 		ArrayList<String> grantTypes = Lists.newArrayList("authorization_code", "implicit", "urn:ietf:params:oauth:grant-type:jwt-bearer", "client_credentials", "urn:ietf:params:oauth:grant_type:redelegate");
 
-		Map<String, Object> m = new HashMap<>();
+		Map<String, Object> m = new HashMap<String, Object>();
 		m.put("issuer", config.getIssuer());
 		m.put("authorization_endpoint", baseUrl + "authorize");
 		m.put("token_endpoint", baseUrl + "token");

@@ -197,7 +197,7 @@ public class TestMITREidDataService_1_1 {
 		System.err.println(configJson);
 		JsonReader reader = new JsonReader(new StringReader(configJson));
 
-		final Map<Long, OAuth2RefreshTokenEntity> fakeDb = new HashMap<>();
+		final Map<Long, OAuth2RefreshTokenEntity> fakeDb = new HashMap<Long, OAuth2RefreshTokenEntity>();
 		when(tokenRepository.saveRefreshToken(isA(OAuth2RefreshTokenEntity.class))).thenAnswer(new Answer<OAuth2RefreshTokenEntity>() {
 			Long id = 332L;
 			@Override
@@ -329,7 +329,7 @@ public class TestMITREidDataService_1_1 {
 
 		JsonReader reader = new JsonReader(new StringReader(configJson));
 
-		final Map<Long, OAuth2AccessTokenEntity> fakeDb = new HashMap<>();
+		final Map<Long, OAuth2AccessTokenEntity> fakeDb = new HashMap<Long, OAuth2AccessTokenEntity>();
 		when(tokenRepository.saveAccessToken(isA(OAuth2AccessTokenEntity.class))).thenAnswer(new Answer<OAuth2AccessTokenEntity>() {
 			Long id = 324L;
 			@Override
@@ -544,7 +544,7 @@ public class TestMITREidDataService_1_1 {
 
 		JsonReader reader = new JsonReader(new StringReader(configJson));
 
-		final Map<Long, WhitelistedSite> fakeDb = new HashMap<>();
+		final Map<Long, WhitelistedSite> fakeDb = new HashMap<Long, WhitelistedSite>();
 		when(wlSiteRepository.save(isA(WhitelistedSite.class))).thenAnswer(new Answer<WhitelistedSite>() {
 			Long id = 333L;
 			@Override
@@ -631,7 +631,7 @@ public class TestMITREidDataService_1_1 {
 
 		JsonReader reader = new JsonReader(new StringReader(configJson));
 
-		final Map<Long, ApprovedSite> fakeDb = new HashMap<>();
+		final Map<Long, ApprovedSite> fakeDb = new HashMap<Long, ApprovedSite>();
 		when(approvedSiteRepository.save(isA(ApprovedSite.class))).thenAnswer(new Answer<ApprovedSite>() {
 			Long id = 364L;
 			@Override
@@ -736,7 +736,7 @@ public class TestMITREidDataService_1_1 {
 
 		JsonReader reader = new JsonReader(new StringReader(configJson));
 
-		final Map<Long, AuthenticationHolderEntity> fakeDb = new HashMap<>();
+		final Map<Long, AuthenticationHolderEntity> fakeDb = new HashMap<Long, AuthenticationHolderEntity>();
 		when(authHolderRepository.save(isA(AuthenticationHolderEntity.class))).thenAnswer(new Answer<AuthenticationHolderEntity>() {
 			Long id = 243L;
 			@Override
@@ -915,8 +915,8 @@ public class TestMITREidDataService_1_1 {
 		System.err.println(configJson);
 
 		JsonReader reader = new JsonReader(new StringReader(configJson));
-		final Map<Long, OAuth2RefreshTokenEntity> fakeRefreshTokenTable = new HashMap<>();
-		final Map<Long, AuthenticationHolderEntity> fakeAuthHolderTable = new HashMap<>();
+		final Map<Long, OAuth2RefreshTokenEntity> fakeRefreshTokenTable = new HashMap<Long, OAuth2RefreshTokenEntity>();
+		final Map<Long, AuthenticationHolderEntity> fakeAuthHolderTable = new HashMap<Long, AuthenticationHolderEntity>();
 		when(tokenRepository.saveRefreshToken(isA(OAuth2RefreshTokenEntity.class))).thenAnswer(new Answer<OAuth2RefreshTokenEntity>() {
 			Long id = 343L;
 			@Override

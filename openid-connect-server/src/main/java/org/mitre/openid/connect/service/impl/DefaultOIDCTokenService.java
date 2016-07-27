@@ -112,9 +112,7 @@ public class DefaultOIDCTokenService implements OIDCTokenService {
 			if (request.getExtensions().get(AuthenticationTimeStamper.AUTH_TIMESTAMP) != null) {
 
 				Long authTimestamp = Long.parseLong((String) request.getExtensions().get(AuthenticationTimeStamper.AUTH_TIMESTAMP));
-				if (authTimestamp != null) {
-					idClaims.claim("auth_time", authTimestamp / 1000L);
-				}
+				idClaims.claim("auth_time", authTimestamp / 1000L);
 			} else {
 				// we couldn't find the timestamp!
 				logger.warn("Unable to find authentication timestamp! There is likely something wrong with the configuration.");

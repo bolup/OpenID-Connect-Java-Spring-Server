@@ -93,7 +93,7 @@ public class IntrospectionEndpoint {
 			Authentication auth, Model model) {
 
 		ClientDetailsEntity authClient = null;
-		Set<String> authScopes = new HashSet<>();
+		Set<String> authScopes = new HashSet<String>();
 
 		if (auth instanceof OAuth2Authentication) {
 			// the client authenticated with OAuth, do our UMA checks

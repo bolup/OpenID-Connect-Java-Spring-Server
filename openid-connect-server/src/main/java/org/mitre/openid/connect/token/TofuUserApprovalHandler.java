@@ -270,7 +270,7 @@ public class TofuUserApprovalHandler implements UserApprovalHandler {
 	@Override
 	public Map<String, Object> getUserApprovalRequest(AuthorizationRequest authorizationRequest,
 			Authentication userAuthentication) {
-		Map<String, Object> model = new HashMap<>();
+		Map<String, Object> model = new HashMap<String, Object>();
 		// In case of a redirect we might want the request parameters to be included
 		model.putAll(authorizationRequest.getRequestParameters());
 		return model;

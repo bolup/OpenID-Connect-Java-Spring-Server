@@ -411,9 +411,9 @@ public class ClientAPI {
 			ClientDetailsEntity client = clientService.getClientById(id);
 
 			if (client == null) {
-				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+				return new ResponseEntity<byte[]>(HttpStatus.NOT_FOUND);
 			} else if (Strings.isNullOrEmpty(client.getLogoUri())) {
-				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+				return new ResponseEntity<byte[]>(HttpStatus.NOT_FOUND);
 			} else {
 				// get the image from cache
 				CachedImage image = clientLogoLoadingService.getLogo(client);
@@ -422,7 +422,7 @@ public class ClientAPI {
 				headers.setContentType(MediaType.parseMediaType(image.getContentType()));
 				headers.setContentLength(image.getLength());
 				
-				return new ResponseEntity<>(image.getData(), headers, HttpStatus.OK);
+				return new ResponseEntity<byte[]>(image.getData(), headers, HttpStatus.OK);
 			}
 	 }
 
