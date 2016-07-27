@@ -76,7 +76,7 @@ public class DefaultScopeClaimTranslationService implements ScopeClaimTranslatio
 		if (scopesToClaims.containsKey(scope)) {
 			return scopesToClaims.get(scope);
 		} else {
-			return new HashSet<>();
+			return new HashSet<String>();
 		}
 	}
 
@@ -85,7 +85,7 @@ public class DefaultScopeClaimTranslationService implements ScopeClaimTranslatio
 	 */
 	@Override
 	public Set<String> getClaimsForScopeSet(Set<String> scopes) {
-		Set<String> result = new HashSet<>();
+		Set<String> result = new HashSet<String>();
 		for (String scope : scopes) {
 			result.addAll(getClaimsForScope(scope));
 		}

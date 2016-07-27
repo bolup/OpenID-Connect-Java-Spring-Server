@@ -160,7 +160,7 @@ public class TestDefaultOAuth2ProviderTokenService {
 			public Set<SystemScope> answer(InvocationOnMock invocation) throws Throwable {
 				Object[] args = invocation.getArguments();
 				Set<String> input = (Set<String>) args[0];
-				Set<SystemScope> output = new HashSet<>();
+				Set<SystemScope> output = new HashSet<SystemScope>();
 				for (String scope : input) {
 					output.add(new SystemScope(scope));
 				}
@@ -173,7 +173,7 @@ public class TestDefaultOAuth2ProviderTokenService {
 			public Set<String> answer(InvocationOnMock invocation) throws Throwable {
 				Object[] args = invocation.getArguments();
 				Set<SystemScope> input = (Set<SystemScope>) args[0];
-				Set<String> output = new HashSet<>();
+				Set<String> output = new HashSet<String>();
 				for (SystemScope scope : input) {
 					output.add(scope.getValue());
 				}

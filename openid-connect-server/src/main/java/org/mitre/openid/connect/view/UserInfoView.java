@@ -144,8 +144,8 @@ public class UserInfoView extends AbstractView {
 		JsonObject obj = ui.toJson();
 
 		Set<String> allowedByScope = translator.getClaimsForScopeSet(scope);
-		Set<String> authorizedByClaims = new HashSet<>();
-		Set<String> requestedByClaims = new HashSet<>();
+		Set<String> authorizedByClaims = new HashSet<String>();
+		Set<String> requestedByClaims = new HashSet<String>();
 
 		if (authorizedClaims != null) {
 			JsonObject userinfoAuthorized = authorizedClaims.getAsJsonObject().get("userinfo").getAsJsonObject();

@@ -17,7 +17,7 @@
  -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.mitre</groupId>
+	<groupId>cm.org.mitre</groupId>
 	<artifactId>openid-connect-parent</artifactId>
 	<version>1.2.7-SNAPSHOT</version>
 	<name>MITREid Connect</name>
@@ -41,8 +41,8 @@
 		<module>openid-connect-client</module>
 		<module>openid-connect-server</module>
 		<module>openid-connect-server-webapp</module>
-		<module>uma-server</module>
-		<module>uma-server-webapp</module>
+<!-- 		<module>uma-server</module> -->
+<!-- 		<module>uma-server-webapp</module> -->
 	</modules>
 
 	<scm>
@@ -426,28 +426,28 @@
 
 			<!-- MITREid Connect components -->
 			<dependency>
-				<groupId>org.mitre</groupId>
+				<groupId>cm.org.mitre</groupId>
 				<artifactId>openid-connect-common</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.mitre</groupId>
+				<groupId>cm.org.mitre</groupId>
 				<artifactId>openid-connect-client</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.mitre</groupId>
+				<groupId>cm.org.mitre</groupId>
 				<artifactId>openid-connect-server</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.mitre</groupId>
+				<groupId>cm.org.mitre</groupId>
 				<artifactId>openid-connect-server-webapp</artifactId>
 				<version>${project.version}</version>
 				<type>war</type>
 			</dependency>
 			<dependency>
-				<groupId>org.mitre</groupId>
+				<groupId>cm.org.mitre</groupId>
 				<artifactId>openid-connect-server-webapp</artifactId>
 				<version>${project.version}</version>
 				<type>warpath</type>
@@ -562,6 +562,20 @@
 									<phase>package</phase>
 									<goals>
 										<goal>jar</goal>
+									</goals>
+									<configuration>
+										<classifier>jdk6</classifier>
+									</configuration>
+								</execution>
+							</executions>
+						</plugin>
+						<plugin>
+							<artifactId>maven-war-plugin</artifactId>
+							<executions>
+								<execution>
+									<phase>package</phase>
+									<goals>
+										<goal>war</goal>
 									</goals>
 									<configuration>
 										<classifier>jdk6</classifier>

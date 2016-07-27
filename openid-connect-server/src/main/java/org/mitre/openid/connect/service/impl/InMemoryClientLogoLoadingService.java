@@ -74,7 +74,9 @@ public class InMemoryClientLogoLoadingService implements ClientLogoLoadingServic
 			} else {
 				return null;
 			}
-		} catch (UncheckedExecutionException | ExecutionException e) {
+		} catch (UncheckedExecutionException e) {
+			return null;
+		} catch (ExecutionException e) {
 			return null;
 		}
 	}

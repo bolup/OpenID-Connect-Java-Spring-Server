@@ -53,7 +53,7 @@ public class JsonMessageSource extends AbstractMessageSource {
 
 	private Locale fallbackLocale = new Locale("en"); // US English is the fallback language
 
-	private Map<Locale, List<JsonObject>> languageMaps = new HashMap<>();
+	private Map<Locale, List<JsonObject>> languageMaps = new HashMap<Locale, List<JsonObject>>();
 	
 	@Autowired
 	private ConfigurationPropertiesBean config;
@@ -161,7 +161,7 @@ public class JsonMessageSource extends AbstractMessageSource {
 
 		if (!languageMaps.containsKey(locale)) {
 			try {
-				List<JsonObject> set = new ArrayList<>();
+				List<JsonObject> set = new ArrayList<JsonObject>();
 				for (String namespace : config.getLanguageNamespaces()) {
 					String filename = locale.getLanguage() + File.separator + namespace + ".json";
 					
@@ -175,7 +175,11 @@ public class JsonMessageSource extends AbstractMessageSource {
 					set.add(obj);
 				}
 				languageMaps.put(locale, set);
-			} catch (JsonIOException | JsonSyntaxException | IOException e) {
+			} catch (JsonIOException e) {
+				logger.error("Unable to load locale", e);
+			} catch (JsonSyntaxException e) {
+				logger.error("Unable to load locale", e);
+			} catch (IOException e) {
 				logger.error("Unable to load locale", e);
 			}
 		}

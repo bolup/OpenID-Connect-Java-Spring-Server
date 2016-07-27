@@ -122,7 +122,7 @@ public class TestDefaultOAuth2ClientDetailsEntityService {
 			public Set<SystemScope> answer(InvocationOnMock invocation) throws Throwable {
 				Object[] args = invocation.getArguments();
 				Set<String> input = (Set<String>) args[0];
-				Set<SystemScope> output = new HashSet<>();
+				Set<SystemScope> output = new HashSet<SystemScope>();
 				for (String scope : input) {
 					output.add(new SystemScope(scope));
 				}
@@ -135,7 +135,7 @@ public class TestDefaultOAuth2ClientDetailsEntityService {
 			public Set<String> answer(InvocationOnMock invocation) throws Throwable {
 				Object[] args = invocation.getArguments();
 				Set<SystemScope> input = (Set<SystemScope>) args[0];
-				Set<String> output = new HashSet<>();
+				Set<String> output = new HashSet<String>();
 				for (SystemScope scope : input) {
 					output.add(scope.getValue());
 				}
@@ -200,7 +200,7 @@ public class TestDefaultOAuth2ClientDetailsEntityService {
 
 		ClientDetailsEntity client = new ClientDetailsEntity();
 
-		Set<String> grantTypes = new HashSet<>();
+		Set<String> grantTypes = new HashSet<String>();
 		grantTypes.add("refresh_token");
 		client.setGrantTypes(grantTypes);
 
@@ -339,7 +339,7 @@ public class TestDefaultOAuth2ClientDetailsEntityService {
 		ClientDetailsEntity oldClient = new ClientDetailsEntity();
 		ClientDetailsEntity client = new ClientDetailsEntity();
 
-		Set<String> grantTypes = new HashSet<>();
+		Set<String> grantTypes = new HashSet<String>();
 		grantTypes.add("refresh_token");
 		client.setGrantTypes(grantTypes);
 
@@ -371,7 +371,7 @@ public class TestDefaultOAuth2ClientDetailsEntityService {
 		Mockito.when(config.isHeartMode()).thenReturn(true);
 
 		ClientDetailsEntity client = new ClientDetailsEntity();
-		Set<String> grantTypes = new LinkedHashSet<>();
+		Set<String> grantTypes = new LinkedHashSet<String>();
 		grantTypes.add("authorization_code");
 		grantTypes.add("implicit");
 		grantTypes.add("client_credentials");
@@ -392,7 +392,7 @@ public class TestDefaultOAuth2ClientDetailsEntityService {
 		Mockito.when(config.isHeartMode()).thenReturn(true);
 
 		ClientDetailsEntity client = new ClientDetailsEntity();
-		Set<String> grantTypes = new LinkedHashSet<>();
+		Set<String> grantTypes = new LinkedHashSet<String>();
 		grantTypes.add("implicit");
 		grantTypes.add("authorization_code");
 		grantTypes.add("client_credentials");
@@ -413,7 +413,7 @@ public class TestDefaultOAuth2ClientDetailsEntityService {
 		Mockito.when(config.isHeartMode()).thenReturn(true);
 
 		ClientDetailsEntity client = new ClientDetailsEntity();
-		Set<String> grantTypes = new LinkedHashSet<>();
+		Set<String> grantTypes = new LinkedHashSet<String>();
 		grantTypes.add("client_credentials");
 		grantTypes.add("authorization_code");
 		grantTypes.add("implicit");
@@ -432,7 +432,7 @@ public class TestDefaultOAuth2ClientDetailsEntityService {
 		Mockito.when(config.isHeartMode()).thenReturn(true);
 
 		ClientDetailsEntity client = new ClientDetailsEntity();
-		Set<String> grantTypes = new LinkedHashSet<>();
+		Set<String> grantTypes = new LinkedHashSet<String>();
 		grantTypes.add("authorization_code");
 		client.setGrantTypes(grantTypes);
 		
@@ -451,7 +451,7 @@ public class TestDefaultOAuth2ClientDetailsEntityService {
 		Mockito.when(config.isHeartMode()).thenReturn(true);
 
 		ClientDetailsEntity client = new ClientDetailsEntity();
-		Set<String> grantTypes = new LinkedHashSet<>();
+		Set<String> grantTypes = new LinkedHashSet<String>();
 		grantTypes.add("implicit");
 		client.setGrantTypes(grantTypes);
 
@@ -470,7 +470,7 @@ public class TestDefaultOAuth2ClientDetailsEntityService {
 		Mockito.when(config.isHeartMode()).thenReturn(true);
 
 		ClientDetailsEntity client = new ClientDetailsEntity();
-		Set<String> grantTypes = new LinkedHashSet<>();
+		Set<String> grantTypes = new LinkedHashSet<String>();
 		grantTypes.add("client_credentials");
 		client.setGrantTypes(grantTypes);
 
@@ -489,7 +489,7 @@ public class TestDefaultOAuth2ClientDetailsEntityService {
 		Mockito.when(config.isHeartMode()).thenReturn(true);
 
 		ClientDetailsEntity client = new ClientDetailsEntity();
-		Set<String> grantTypes = new LinkedHashSet<>();
+		Set<String> grantTypes = new LinkedHashSet<String>();
 		grantTypes.add("authorization_code");
 		client.setGrantTypes(grantTypes);
 		
@@ -504,7 +504,7 @@ public class TestDefaultOAuth2ClientDetailsEntityService {
 		Mockito.when(config.isHeartMode()).thenReturn(true);
 
 		ClientDetailsEntity client = new ClientDetailsEntity();
-		Set<String> grantTypes = new LinkedHashSet<>();
+		Set<String> grantTypes = new LinkedHashSet<String>();
 		grantTypes.add("implicit");
 		client.setGrantTypes(grantTypes);
 
@@ -519,7 +519,7 @@ public class TestDefaultOAuth2ClientDetailsEntityService {
 		Mockito.when(config.isHeartMode()).thenReturn(true);
 
 		ClientDetailsEntity client = new ClientDetailsEntity();
-		Set<String> grantTypes = new LinkedHashSet<>();
+		Set<String> grantTypes = new LinkedHashSet<String>();
 		grantTypes.add("client_credentials");
 		client.setGrantTypes(grantTypes);
 
@@ -536,7 +536,7 @@ public class TestDefaultOAuth2ClientDetailsEntityService {
 		Mockito.when(config.isHeartMode()).thenReturn(true);
 
 		ClientDetailsEntity client = new ClientDetailsEntity();
-		Set<String> grantTypes = new LinkedHashSet<>();
+		Set<String> grantTypes = new LinkedHashSet<String>();
 		grantTypes.add("authorization_code");
 		client.setGrantTypes(grantTypes);
 		
@@ -555,7 +555,7 @@ public class TestDefaultOAuth2ClientDetailsEntityService {
 		Mockito.when(config.isHeartMode()).thenReturn(true);
 
 		ClientDetailsEntity client = new ClientDetailsEntity();
-		Set<String> grantTypes = new LinkedHashSet<>();
+		Set<String> grantTypes = new LinkedHashSet<String>();
 		grantTypes.add("authorization_code");
 		client.setGrantTypes(grantTypes);
 		
@@ -575,7 +575,7 @@ public class TestDefaultOAuth2ClientDetailsEntityService {
 		Mockito.when(config.isHeartMode()).thenReturn(true);
 
 		ClientDetailsEntity client = new ClientDetailsEntity();
-		Set<String> grantTypes = new LinkedHashSet<>();
+		Set<String> grantTypes = new LinkedHashSet<String>();
 		grantTypes.add("authorization_code");
 		grantTypes.add("refresh_token");
 		client.setGrantTypes(grantTypes);
@@ -597,7 +597,7 @@ public class TestDefaultOAuth2ClientDetailsEntityService {
 		Mockito.when(config.isHeartMode()).thenReturn(true);
 
 		ClientDetailsEntity client = new ClientDetailsEntity();
-		Set<String> grantTypes = new LinkedHashSet<>();
+		Set<String> grantTypes = new LinkedHashSet<String>();
 		grantTypes.add("authorization_code");
 		grantTypes.add("refresh_token");
 		client.setGrantTypes(grantTypes);
@@ -617,7 +617,7 @@ public class TestDefaultOAuth2ClientDetailsEntityService {
 		Mockito.when(config.isHeartMode()).thenReturn(true);
 
 		ClientDetailsEntity client = new ClientDetailsEntity();
-		Set<String> grantTypes = new LinkedHashSet<>();
+		Set<String> grantTypes = new LinkedHashSet<String>();
 		grantTypes.add("authorization_code");
 		grantTypes.add("refresh_token");
 		client.setGrantTypes(grantTypes);
