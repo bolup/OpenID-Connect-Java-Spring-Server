@@ -65,7 +65,7 @@ public class SavedUserAuthentication implements Authentication {
 	 */
 	public SavedUserAuthentication(Authentication src) {
 		setName(src.getName());
-		setAuthorities(new HashSet<>(src.getAuthorities()));
+		setAuthorities(new HashSet<GrantedAuthority>(src.getAuthorities()));
 		setAuthenticated(src.isAuthenticated());
 
 		if (src instanceof SavedUserAuthentication) {

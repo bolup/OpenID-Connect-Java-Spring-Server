@@ -116,14 +116,14 @@ public class AuthenticationHolderEntity {
 
 		// pull apart the request and save its bits
 		OAuth2Request o2Request = authentication.getOAuth2Request();
-		setAuthorities(o2Request.getAuthorities() == null ? null : new HashSet<>(o2Request.getAuthorities()));
+		setAuthorities(o2Request.getAuthorities() == null ? null : new HashSet<GrantedAuthority>(o2Request.getAuthorities()));
 		setClientId(o2Request.getClientId());
-		setExtensions(o2Request.getExtensions() == null ? null : new HashMap<>(o2Request.getExtensions()));
+		setExtensions(o2Request.getExtensions() == null ? null : new HashMap<String, Serializable>(o2Request.getExtensions()));
 		setRedirectUri(o2Request.getRedirectUri());
-		setRequestParameters(o2Request.getRequestParameters() == null ? null : new HashMap<>(o2Request.getRequestParameters()));
-		setResourceIds(o2Request.getResourceIds() == null ? null : new HashSet<>(o2Request.getResourceIds()));
-		setResponseTypes(o2Request.getResponseTypes() == null ? null : new HashSet<>(o2Request.getResponseTypes()));
-		setScope(o2Request.getScope() == null ? null : new HashSet<>(o2Request.getScope()));
+		setRequestParameters(o2Request.getRequestParameters() == null ? null : new HashMap<String, String>(o2Request.getRequestParameters()));
+		setResourceIds(o2Request.getResourceIds() == null ? null : new HashSet<String>(o2Request.getResourceIds()));
+		setResponseTypes(o2Request.getResponseTypes() == null ? null : new HashSet<String>(o2Request.getResponseTypes()));
+		setScope(o2Request.getScope() == null ? null : new HashSet<String>(o2Request.getScope()));
 		setApproved(o2Request.isApproved());
 
 		if (authentication.getUserAuthentication() != null) {
